@@ -235,8 +235,6 @@ namespace MathematicalPlayground.NumericalMethods
          return mRet;
       }
 
-
-
       public static MatrixNumeric operator *(MatrixNumeric mLeft, MatrixNumeric mRight)
       {
          return MatrixNumeric.Multiply(mLeft, mRight);
@@ -529,7 +527,6 @@ namespace MathematicalPlayground.NumericalMethods
          resRet.PivotArray = nP;
 
          return resRet;
-
       }
 
       public MatrixNumeric Invert()
