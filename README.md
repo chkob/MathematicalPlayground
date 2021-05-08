@@ -1,0 +1,1 @@
+A code from Trent F Guidry's blog.
