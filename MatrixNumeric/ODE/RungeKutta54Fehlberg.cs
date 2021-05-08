@@ -185,7 +185,9 @@ namespace MathematicalPlayground.NumericalMethods.ODE
             if (!bErrorExceeded)
             {
                //FinalcurrentX += currentStep;
-               row = new double[rungeKuttaParameters.Length + 1]; row[0] = currentX;
+               row = new double[rungeKuttaParameters.Length + 1];
+               currentX += currentStep;
+               row[0] = currentX;
                for (int j = 0; j < rungeKuttaParameters.Length; j++)
                {
                   rungeKuttaParameters[j].Value = (_useFifthOrderEstimate) ? zs[j] : ys[j];
@@ -214,6 +216,7 @@ namespace MathematicalPlayground.NumericalMethods.ODE
                {
                   currentStep /= 2.0;
                }
+
                if (currentStep > step)
                {
                   currentStep = step;

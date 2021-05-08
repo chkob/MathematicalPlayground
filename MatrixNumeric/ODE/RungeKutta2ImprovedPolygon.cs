@@ -67,6 +67,7 @@ namespace MathematicalPlayground.NumericalMethods.ODE
 
             //FinalcurrentX += currentStep;
             row = new double[rungeKuttaParameters.Length + 1];
+            currentX += currentStep;
             row[0] = currentX;
             for (int i = 0; i < rungeKuttaParameters.Length; i++)
             {
