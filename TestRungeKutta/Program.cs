@@ -1,6 +1,7 @@
 ﻿using MathematicalPlayground.NumericalMethods;
 using MathematicalPlayground.NumericalMethods.ODE;
 using System;
+using System.Linq;
 
 namespace MathematicalPlayground.TestRungeKutta
 {
@@ -10,17 +11,22 @@ namespace MathematicalPlayground.TestRungeKutta
       {
          Console.WriteLine("Hello World!");
 
-         TestEuler();
-         TestRungeKutta2Heun();
-         TestRungeKutta2Ralston();
-         TestRungeKutta2ImprovedPolygon();
-         TestRungeKutta3();
-         TestRungeKutta4();
-         TestRungeKutta5Butcher();
-         TestRungeKutta54Fehlberg();
+         Func<double[][]>[] functions = new Func<double[][]>[]
+         {
+            TestEuler,
+            TestRungeKutta2Heun,
+            TestRungeKutta2Ralston,
+            TestRungeKutta2ImprovedPolygon,
+            TestRungeKutta3,
+            TestRungeKutta4,
+            TestRungeKutta5Butcher,
+            TestRungeKutta54Fehlberg
+         };
+
+         var results = functions.Select(x => x.Invoke()).ToList();
       }
 
-      public static void TestEuler()
+      public static double[][] TestEuler()
       {
          Parameter T = new Parameter(0.0);
          Parameter X1 = new Parameter(0.0);
@@ -35,9 +41,11 @@ namespace MathematicalPlayground.TestRungeKutta
          RungeKuttaBase ode = new Euler();
          
          double[][] dRes = ode.Integrate(parameters, T, functions, 3.3, 0.1);
+
+         return dRes;
       }
 
-      public static void TestRungeKutta2Heun()
+      public static double[][] TestRungeKutta2Heun()
       {
          Parameter T = new Parameter(0.0);
          Parameter X1 = new Parameter(0.0);
@@ -52,9 +60,11 @@ namespace MathematicalPlayground.TestRungeKutta
          RungeKuttaBase ode = new RungeKutta2Heun();
 
          double[][] dRes = ode.Integrate(parameters, T, functions, 3.3, 0.1);
+
+         return dRes;
       }
 
-      public static void TestRungeKutta2Ralston()
+      public static double[][] TestRungeKutta2Ralston()
       {
          Parameter T = new Parameter(0.0);
          Parameter X1 = new Parameter(0.0);
@@ -69,9 +79,11 @@ namespace MathematicalPlayground.TestRungeKutta
          RungeKuttaBase ode = new RungeKutta2Ralston();
 
          double[][] dRes = ode.Integrate(parameters, T, functions, 3.3, 0.1);
+
+         return dRes;
       }
 
-      public static void TestRungeKutta2ImprovedPolygon()
+      public static double[][] TestRungeKutta2ImprovedPolygon()
       {
          Parameter T = new Parameter(0.0);
          Parameter X1 = new Parameter(0.0);
@@ -86,9 +98,11 @@ namespace MathematicalPlayground.TestRungeKutta
          RungeKuttaBase ode = new RungeKutta2ImprovedPolygon();
 
          double[][] dRes = ode.Integrate(parameters, T, functions, 3.3, 0.1);
+
+         return dRes;
       }
 
-      public static void TestRungeKutta3()
+      public static double[][] TestRungeKutta3()
       {
          Parameter T = new Parameter(0.0);
          Parameter X1 = new Parameter(0.0);
@@ -103,9 +117,11 @@ namespace MathematicalPlayground.TestRungeKutta
          RungeKuttaBase ode = new RungeKutta3();
 
          double[][] dRes = ode.Integrate(parameters, T, functions, 3.3, 0.1);
+
+         return dRes;
       }
 
-      public static void TestRungeKutta4()
+      public static double[][] TestRungeKutta4()
       {
          Parameter T = new Parameter(0.0);
          Parameter X1 = new Parameter(0.0);
@@ -120,9 +136,11 @@ namespace MathematicalPlayground.TestRungeKutta
          RungeKuttaBase ode = new RungeKutta4();
 
          double[][] dRes = ode.Integrate(parameters, T, functions, 3.3, 0.1);
+
+         return dRes;
       }
 
-      public static void TestRungeKutta5Butcher()
+      public static double[][] TestRungeKutta5Butcher()
       {
          Parameter T = new Parameter(0.0);
          Parameter X1 = new Parameter(0.0);
@@ -137,9 +155,11 @@ namespace MathematicalPlayground.TestRungeKutta
          RungeKuttaBase ode = new RungeKutta5Butcher();
 
          double[][] dRes = ode.Integrate(parameters, T, functions, 3.3, 0.1);
+
+         return dRes;
       }
 
-      public static void TestRungeKutta54Fehlberg()
+      public static double[][] TestRungeKutta54Fehlberg()
       {
          Parameter T = new Parameter(0.0);
          Parameter X1 = new Parameter(0.0);
@@ -154,6 +174,8 @@ namespace MathematicalPlayground.TestRungeKutta
          RungeKuttaBase ode = new RungeKutta54Fehlberg();
 
          double[][] dRes = ode.Integrate(parameters, T, functions, 3.3, 0.1);
+
+         return dRes;
       }
    }
 }
