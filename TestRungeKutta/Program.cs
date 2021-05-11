@@ -14,6 +14,7 @@ namespace MathematicalPlayground.TestRungeKutta
          Func<double[][]>[] functions = new Func<double[][]>[]
          {
             TestEuler,
+            TestEulerWithBreaking,
             TestRungeKutta2Heun,
             TestRungeKutta2Ralston,
             TestRungeKutta2ImprovedPolygon,
@@ -41,6 +42,31 @@ namespace MathematicalPlayground.TestRungeKutta
          RungeKuttaBase ode = new Euler();
          
          double[][] dRes = ode.Integrate(parameters, T, functions, 3.3, 0.1);
+
+         return dRes;
+      }
+
+      public static double[][] TestEulerWithBreaking()
+      {
+         Parameter T = new Parameter(0.0);
+         Parameter X1 = new Parameter(0.0);
+         Parameter X2 = new Parameter(4.0);
+         Parameter[] parameters = new Parameter[] { X1, X2 };
+         Func<double>[] functions = new Func<double>[]
+         {
+            () => X1 - 2.0 * X2,
+            () => 2.0 * X1 + X2
+         };
+
+         Func<bool>[] breakingFunctions = new Func<bool>[]
+         {
+            () => X1 < 2.0 * X2,
+            () => 2.0 * X1 + X2 > 10
+         };
+
+         RungeKuttaBase ode = new Euler();
+
+         double[][] dRes = ode.IntegrateWithBreak(parameters, T, functions, breakingFunctions, 3.3, 0.1);
 
          return dRes;
       }
