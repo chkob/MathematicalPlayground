@@ -9,5 +9,15 @@ namespace MathematicalPlayground.NumericalMethods.ODE
       {
          throw new NotImplementedException();
       }
+
+      public virtual double[][] IntegrateWithBreak(Parameter[] rungeKuttaParameters,
+         Parameter x,
+         Func<double>[] rungeKuttaFunctions,
+         Func<bool>[] breakingFunctions,
+         double xEnd,
+         double step)
+      {
+         throw new NotImplementedException();
+      }
    }
 }
