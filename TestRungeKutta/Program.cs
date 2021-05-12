@@ -11,10 +11,9 @@ namespace MathematicalPlayground.TestRungeKutta
       {
          Console.WriteLine("Hello World!");
 
-         Func<double[][]>[] functions = new Func<double[][]>[]
+         Func<double[][]>[] functionsNoBreak = new Func<double[][]>[]
          {
             TestEuler,
-            TestEulerWithBreaking,
             TestRungeKutta2Heun,
             TestRungeKutta2Ralston,
             TestRungeKutta2ImprovedPolygon,
@@ -24,7 +23,14 @@ namespace MathematicalPlayground.TestRungeKutta
             TestRungeKutta54Fehlberg
          };
 
-         var results = functions.Select(x => x.Invoke()).ToList();
+         var resultsNoBreak = functionsNoBreak.Select(x => x.Invoke()).ToList();
+
+         Func<double[][]>[] functionsWithBreak = new Func<double[][]>[]
+         {
+            TestEulerWithBreaking,
+         };
+
+         var resultsWithBreak = functionsWithBreak.Select(x => x.Invoke()).ToList();
       }
 
       public static double[][] TestEuler()
